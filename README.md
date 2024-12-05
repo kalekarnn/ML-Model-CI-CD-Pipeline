@@ -1,19 +1,25 @@
 # ML Model CI/CD Pipeline
 
+[![ML Pipeline](https://github.com/kalekarnn/ML-Model-CI-CD-Pipeline/actions/workflows/ml_pipeline.yml/badge.svg)](https://github.com/kalekarnn/ML-Model-CI-CD-Pipeline/actions/workflows/ml_pipeline.yml)
+
+
 This repository contains a machine learning project with automated CI/CD pipeline for training, testing and deploying a CNN model on the MNIST dataset.
 
 ## Project Structure
 
-# .
-# ├── .github/
-# │   └── workflows/
-# │       └── ml_pipeline.yml
-# ├── src/
-# │   ├── model.py
-# │   ├── train.py
-# │   └── test_model.py
-# ├── requirements.txt
-# └── README.md
+```
+  .
+  ├── .github/
+  │   └── workflows/
+  │       └── ml_pipeline.yml
+  ├── src/
+  │   ├── model.py
+  │   ├── train.py
+  │   └── test_model.py
+  ├── requirements.txt
+  ├── .gitignore
+  └── README.md
+```
 
 ## Model Details
 

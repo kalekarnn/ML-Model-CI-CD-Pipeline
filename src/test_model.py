@@ -1,8 +1,8 @@
-
 import torch
 import pytest
 from torchvision import datasets, transforms
 from model import MNISTModel
+from torch import nn
 
 def test_model_parameters_less_than_25000():
     model = MNISTModel()
@@ -51,3 +51,32 @@ def test_model_accuracy_greater_than_95():
     
     accuracy = 100 * correct / total
     assert accuracy > 95, f"Accuracy is {accuracy}%, should be > 95%"
+
+
+def test_model_output_shape():
+    model = MNISTModel()
+    batch_size = 32
+    input_tensor = torch.randn(batch_size, 1, 28, 28)  # MNIST image size is 28x28
+    output = model(input_tensor)
+    assert output.shape == (batch_size, 10), f"Expected output shape (32, 10), got {output.shape}"
+
+def test_model_forward_pass():
+    model = MNISTModel()
+    x = torch.randn(1, 1, 28, 28)
+    try:
+        output = model(x)
+        assert True, "Forward pass successful"
+    except Exception as e:
+        assert False, f"Forward pass failed with error: {str(e)}"
+
+def test_model_layers():
+    model = MNISTModel()
+    # Test conv layers
+    assert isinstance(model.conv1, nn.Conv2d), "First layer should be Conv2d"
+    assert isinstance(model.conv2, nn.Conv2d), "Second layer should be Conv2d"
+    # Test fully connected layers
+    assert isinstance(model.fc1, nn.Linear), "Third layer should be Linear"
+    assert isinstance(model.fc2, nn.Linear), "Fourth layer should be Linear"
+    # Test activation and pooling
+    assert isinstance(model.pool, nn.MaxPool2d), "Should have MaxPool2d layer"
+    assert isinstance(model.relu, nn.ReLU), "Should have ReLU activation"
